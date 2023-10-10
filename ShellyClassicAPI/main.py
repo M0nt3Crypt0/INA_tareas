@@ -29,9 +29,19 @@ def check_device_connection(device):
 
 # Main
 def main():
-    # Si temp > 30 o puerta abierta enciende
-    if temp > 30 or open:
-        set_value(SHELLY_PLUS_1_IP, "relay/0", {"turn": "on"})
-    # else apaga
-    else:
-        set_value(SHELLY_PLUS_1_IP, "relay/0", {"turn": "off"})
+    error = False
+
+    while not error:
+        # Lee temperatura interna
+
+        # Lee temperatura externa 
+
+        # Lee si la 'ventana' está abierta
+        
+
+        # Si temp > 30 o puerta abierta enciende
+        if temp > 30 or open:
+            set_value(SHELLY_PLUS_1_IP, "relay/0", {"turn": "on"})
+        # else apaga
+        else:
+            set_value(SHELLY_PLUS_1_IP, "relay/0", {"turn": "off"})
