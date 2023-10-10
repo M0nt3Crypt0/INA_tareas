@@ -1,13 +1,14 @@
 # Bibliotecas 
 import requests
 import json
+import sys
 
 
 # Config
 SHELLY_PLUS_1_IP = "192.168.55.103"
 
 SHELLY_PLUS_HT_IP = "192.168.55.102"
-SHELLY_PLUS_DW_IP = "192.168.55.105"
+SHELLY_DW_IP = "192.168.55.105"
 
 LATITUD = 39.46975
 LONGITUD = -0.37739
@@ -31,8 +32,19 @@ def check_device_connection(device):
 def main():
     error = False
 
+    check_device_connection(SHELLY_PLUS_1_IP)
+    if error:
+        error_msg = "No se puede conectar a Shelly Plus 1"
+    check_device_connection(SHELLY_PLUS_HT_IP)
+    if error:
+        error_msg = "No se puede conectar a Shelly Plus HT"
+    check_device_connection(SHELLY_DW_IP)
+    if error:
+        error_msg = "No se puede conectar a Shelly DW"
+
     while not error:
         # Lee temperatura interna
+        
 
         # Lee temperatura externa 
 
@@ -45,3 +57,5 @@ def main():
         # else apaga
         else:
             set_value(SHELLY_PLUS_1_IP, "relay/0", {"turn": "off"})
+    
+    sys.exit(error_msg)
