@@ -20,11 +20,6 @@ def get_api(device, path):
     response = requests.get(url)
     return response
 
-def post_api(device, path, payload):
-    url = f"http://{device}{path}"
-    response = requests.post(url, json=payload)
-    return response
-
 def check_device_connection(device):
     try:
         response = get_api(device, "/shelly")
@@ -60,15 +55,8 @@ def main():
         temp_in = response_json["tC"]
         print(temp_in)
 
-        # Lee si la 'ventana' está abierta
-        #check_device_connection(SHELLY_DW_IP)
-        #response = get_api(SHELLY_DW_IP, "/status")
-        #print(response.json())
-        #response_json = json.load(response)
-        #open = response_json[]
-
         # Si temp > 30 o puerta abierta enciende
-        if temp_in > temp_out:
+        if temp_in < temp_out:
             check_device_connection(SHELLY_PLUS_1_IP)
             shelly_plus_on()
         # else apaga
