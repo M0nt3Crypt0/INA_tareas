@@ -3,7 +3,6 @@ import requests
 import json
 import sys
 
-
 # Config
 SHELLY_PLUS_1_IP = "192.168.55.103"
 
@@ -26,36 +25,46 @@ def post_api(device, path, payload):
 
 def check_device_connection(device):
     response = get_api(device, "/shelly")
-    return response.ok()
+    if not response.ok:
+        sys.exit("Error no response")
 
 # Main
 def main():
     error = False
+    error_msg = ""
 
-    check_device_connection(SHELLY_PLUS_1_IP)
-    if error:
-        error_msg = "No se puede conectar a Shelly Plus 1"
-    check_device_connection(SHELLY_PLUS_HT_IP)
+    
     if error:
         error_msg = "No se puede conectar a Shelly Plus HT"
-    check_device_connection(SHELLY_DW_IP)
     if error:
         error_msg = "No se puede conectar a Shelly DW"
 
+
     while not error:
         # Lee temperatura interna
-        
-
-        # Lee temperatura externa 
+        check_device_connection(SHELLY_PLUS_HT_IP)
+        response_json = get_api(SHELLY_PLUS_HT_IP, "/rpc/Temperature.GetStatus?id=0").json()
+        temp = response_json["tC"]
+        print(temp)
 
         # Lee si la 'ventana' está abierta
-        
+        check_device_connection(SHELLY_DW_IP)
+        response = get_api(SHELLY_DW_IP, "/")
+        response_json = json.load(response)
+        #open = response_json[]
+
+        # Lee temperatura externa 
+        # TODO
 
         # Si temp > 30 o puerta abierta enciende
         if temp > 30 or open:
-            set_value(SHELLY_PLUS_1_IP, "relay/0", {"turn": "on"})
+            check_device_connection(SHELLY_PLUS_1_IP)
+            post_api(SHELLY_PLUS_1_IP, "/relay/0", {"turn": "on"})
         # else apaga
         else:
-            set_value(SHELLY_PLUS_1_IP, "relay/0", {"turn": "off"})
+            post_api(SHELLY_PLUS_1_IP, "/relay/0", {"turn": "off"})
     
     sys.exit(error_msg)
+
+if __name__ == '__main__':
+    sys.exit(main())
