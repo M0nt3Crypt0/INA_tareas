@@ -4,7 +4,7 @@ Asignatura del segundo año del Máster Universitario en Ingeniería Informátic
 
 Participantes:
 * César Augusto
-* Zequan
+* Zequan Liu
 
 ## Shelly Classic API
 
