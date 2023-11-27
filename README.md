@@ -6,6 +6,14 @@ Participantes:
 * César Augusto
 * Zequan Liu
 
+La asignatura está dividida en dos partes:
+* Parte I: Mediana escala
+* Parte II: Gran escala
+
+Por consecuencia este repositorio también
+
+# MEDIANA ESCALA
+
 ## Shelly Classic API
 
 Este trabajo pretende crear una API para el dispositivo Shelly Plus que cumpla las siguientes condiciones:
@@ -17,3 +25,11 @@ Este trabajo pretende crear una API para el dispositivo Shelly Plus que cumpla l
 
 Se ha pensad un supuesto en el que el dispositivo conectado a este interruptor debería estar encendido 
 sólo si la temperatura interior es inferior a la exterior(open-meteo API) y si las ventanas están cerradas
+
+# GRAN ESCALA
+
+## Seminario I
+Desarrollo de un dispositivo IoT físico
+
+## Seminario II
+Debido a que este seminario pide rehacer el código de distintas formas, cada una de ellas se ha subido a una rama

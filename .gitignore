@@ -1,3 +1,14 @@
+# Eclipse - carpetas
+.project
+.classpath
+.metadata
+.settings
+bin
+
+# Eclipse - archivos
+module-info.java
+module-info.class
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
